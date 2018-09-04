@@ -6,9 +6,10 @@ const
     request = require('request'),
     express = require('express'),
     body_parser = require('body-parser'),
-    access_token = "EAAazwTWGOZC4BADeMZAXMbT3Su41GSCZB3URNWAhtig3vndZAPOVd8muPAyd5dRB1s2JTkuFDDZBrwQZCdoteZCOLY6DU1lgD8qcGQRYlQeHmF7lqf69PY38tqneSEivJ2k2MgI6J5fK7dWtEaibm8Rms2jidHQrMGeSXP425FUjgZDZD",
+    access_token = process.env.ACCESS_TOKEN,
     app = express().use(body_parser.json()); // creates express http server
 
+require('dotenv').config();
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 5000, () => console.log('webhook is listening'));
 
@@ -78,7 +79,7 @@ function processComments(comment) {
 // Accepts GET requests at the /webhook endpoint
 app.get('/webhook', (req, res) => {
     console.log(req);
-    const verify_token = "Guitrozon2018$";
+    const verify_token = process.env.VERIFY_TOKEN;
 
     // Parse params from the webhook verification request
     let mode = req.query['hub.mode'];
