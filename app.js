@@ -7,6 +7,8 @@ const
     body_parser = require('body-parser'),
     access_token = process.env.ACCESS_TOKEN,
     app = express().use(body_parser.json()); // creates express http server
+
+require('dotenv').config();
 // Sets server port and logs message on success
 app.listen(process.env.PORT || 5000, () => console.log('webhook is listening'));
 
